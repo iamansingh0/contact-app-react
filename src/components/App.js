@@ -1,4 +1,5 @@
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import AddContact from "./AddContact";
@@ -13,16 +14,16 @@ function App() {
 
   const addContactHnadler = (contact) => {
     console.log(contact);
-    setContacts([...contacts, { id: uuid(), ...contact}]);
+    setContacts([...contacts, { id: uuid(), ...contact }]);
   };
 
   const removeContactHandler = (id) => {
     const newContactList = contacts.filter((contact) => {
-      return contact.id !== id
-    })
+      return contact.id !== id;
+    });
 
-    setContacts(newContactList)
-  }
+    setContacts(newContactList);
+  };
 
   useEffect(() => {
     console.log("Use effect ran");
@@ -31,9 +32,25 @@ function App() {
 
   return (
     <div className="ui container">
-      <Header />
-      <AddContact addContactHnadler={addContactHnadler} />
-      <ContactList contacts={contacts} getContactId={removeContactHandler}/>
+      <Router>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              <ContactList
+                contacts={contacts}
+                getContactId={removeContactHandler}
+              />
+            }
+          />
+          <Route
+            path="/add"
+            element={<AddContact addContactHnadler={addContactHnadler} />}
+          />
+        </Routes>
+      </Router>
     </div>
   );
 }
