@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import AddContact from "./AddContact";
 import ContactList from "./ContactList";
+import ContactDetail from "./ContactDetail";
 import uuid from "react-uuid";
 
 function App() {
@@ -48,6 +49,11 @@ function App() {
           <Route
             path="/add"
             element={<AddContact addContactHnadler={addContactHnadler} />}
+          />
+          <Route 
+            path="/contact/:id" 
+            exact 
+            element={<ContactDetail />} 
           />
         </Routes>
       </Router>

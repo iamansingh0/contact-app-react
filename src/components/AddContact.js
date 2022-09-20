@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from "react-router-dom";
 
 class AddContact extends React.Component {
   state = {
@@ -15,16 +15,18 @@ class AddContact extends React.Component {
     }
     this.props.addContactHnadler(this.state);
     this.setState({ name: "", email: "" });
-    console.log(this.state);
+    window.location.replace('/')
   };
 
   render() {
     return (
-      <div className="ui main" style={{marginTop: "4vh"}}>
+      <div className="ui main" style={{ marginTop: "4vh" }}>
         <h2>
           Add Contact
           <Link to="/">
-            <button className="ui button blue right floated segment">See List</button>
+            <button className="ui button blue right floated segment">
+              See List
+            </button>
           </Link>
         </h2>
         <form className="ui form" onSubmit={this.add}>
