@@ -5,6 +5,7 @@ import Header from "./Header";
 import AddContact from "./AddContact";
 import ContactList from "./ContactList";
 import ContactDetail from "./ContactDetail";
+import api from '../api/contacts'
 import uuid from "react-uuid";
 
 function App() {
@@ -13,17 +14,25 @@ function App() {
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? []
   );
 
+  // retriveContacts
+  // const retrieveContacts = async () => {
+  //   const response = await api.get("/contacts")
+  //   return response.data;
+  // }
+  
   const addContactHnadler = (contact) => {
     console.log(contact);
     setContacts([...contacts, { id: uuid(), ...contact }]);
   };
 
   const removeContactHandler = (id) => {
-    const newContactList = contacts.filter((contact) => {
-      return contact.id !== id;
-    });
-
-    setContacts(newContactList);
+    if(window.confirm('You want to delete ?')) {
+      const newContactList = contacts.filter((contact) => {
+        return contact.id !== id;
+      });
+      setContacts(newContactList);
+    }
+    else return;
   };
 
   useEffect(() => {
