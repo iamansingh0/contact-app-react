@@ -21,3 +21,8 @@ i.icon {
   font-size: 20px;
   cursor: pointer;
 }
+
+input {
+  height: 6vh;
+  font-size: 1.3rem;
+}
